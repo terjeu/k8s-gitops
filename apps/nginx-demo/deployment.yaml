@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitops-nginx
+  namespace: operations
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: gitops-nginx
+  template:
+    metadata:
+      labels:
+        app: gitops-nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.27
+        resources:
+          requests:
+            cpu: 250m
+            memory: 64Mi
+          limits:
+            cpu: 500m
+            memory: 128Mi
